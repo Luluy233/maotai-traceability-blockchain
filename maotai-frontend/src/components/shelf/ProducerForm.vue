@@ -1,7 +1,7 @@
 <script setup>
 
   const props = defineProps({
-    retailerData: {
+    traceData: {
       type: Object,
     }
   })
@@ -10,28 +10,14 @@
 
 
 <template>
-  <el-form :model="props.retailerData"
-           ref="formRef"
-           label-width="auto"
-           label-position="left">
-    <el-form-item label="茅台编号">
-      <el-input v-model="props.retailerData.bottleId" disabled/>
-    </el-form-item>
-    <el-form-item label="零售商编号">
-      <el-input v-model="props.retailerData.retailerId" disabled/>
-    </el-form-item>
-    <el-form-item label="零售商名称">
-      <el-input v-model="props.retailerData.retailerName" disabled/>
-    </el-form-item>
-    <el-form-item label="零售商电话">
-      <el-input v-model="props.retailerData.retailerTel" disabled/>
-    </el-form-item>
-    <el-form-item label="零售商地址">
-      <el-input v-model="props.retailerData.retailerLocation" disabled/>
-    </el-form-item>
-    <el-form-item label="上架时间">
-      <el-input v-model="props.retailerData.retailTime" disabled/>
-    </el-form-item>
-  </el-form>
+  <el-card style="max-width: 480px">
+    <template #header>
+      <div class="card-header">
+        <span>Card name</span>
+      </div>
+    </template>
+    <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
+    <template #footer>Footer content</template>
+  </el-card>
 
 </template>

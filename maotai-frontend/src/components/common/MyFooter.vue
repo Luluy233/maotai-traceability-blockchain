@@ -12,7 +12,7 @@
             </el-row>
             <el-row>
                 <el-col :span="24" class="center">
-                  <router-link to="https://github.com/Luluy233/maotai-traceability-blockchain" class="custom-link">Copyright © @Luluy233</router-link>
+                  <a href="https://github.com/Luluy233/maotai-traceability-blockchain" target="_blank" class="custom-link">Copyright © @Luluy233</a>
                 </el-col>
             </el-row>
         </el-col>

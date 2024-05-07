@@ -7,7 +7,7 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
   const showForm = ref(false);
   const formData = ref();
   const showDialog = (val) =>{
-    console.log(val);
+    console.log('shelfView', val.wine_info);
     showForm.value = val.show_flag;
     formData.value = val.wine_info;
   }
@@ -35,7 +35,7 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
         <ProducerForm :producer-data="formData"></ProducerForm>
 
         <el-divider>上架信息</el-divider>
-        <ShelfFormDialog></ShelfFormDialog>
+        <ShelfFormDialog :bottleId="formData.bottleId"></ShelfFormDialog>
 
       </el-dialog>
 

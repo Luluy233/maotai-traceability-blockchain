@@ -1,9 +1,11 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
+import {buyWine} from "@/utils/api.js";
 
 //表单数据
 const ConsumerForm = reactive({
+  bottleId: '',
   consumerId: '',
   consumerName: '',
 })
@@ -19,15 +21,18 @@ const rules = reactive({
   consumerName:[]
 })
 
-
 //提交表单
 const submitForm = () =>{
-  console.log('submit：', ConsumerForm);
   formRef.value.validate((valid) => {
     if (valid){ //表单验证成功，可以提交
       // 提交表单
-      ElMessage.success('购买成功！');
-
+      buyWine(ConsumerForm)
+          .then(res => {
+            ElMessage.success('购买成功！');
+          })
+          .catch(err =>{
+            ElMessage.error('购买失败，请重试！');
+          })
     }else {
       // 表单验证不通过，给出错误提示
       ElMessage.error('请检查信息是否符合要求！')

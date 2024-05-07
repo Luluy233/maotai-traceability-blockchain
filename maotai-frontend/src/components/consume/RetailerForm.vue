@@ -1,10 +1,10 @@
 <script setup>
 
-const props = defineProps({
-  retailerData: {
-    type: Object,
-  }
-})
+  const props = defineProps({
+    retailerData: {
+      type: Object,
+    }
+  })
 
 </script>
 

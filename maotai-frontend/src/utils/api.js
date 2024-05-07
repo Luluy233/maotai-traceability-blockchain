@@ -23,7 +23,7 @@ export function shelfWine(data) {
 //购买茅台
 export function buyWine(data) {
     return request({
-        url:"/shelf/buy",
+        url:"/maotai/buy",
         method: "POST",
         data: data,
     })

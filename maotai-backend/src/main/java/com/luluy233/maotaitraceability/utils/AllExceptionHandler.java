@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * @author Luluy233
+ * @date 2024/5/6
+ */
 @ControllerAdvice
 public class AllExceptionHandler {
     @ExceptionHandler(Exception.class)

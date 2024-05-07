@@ -5,8 +5,8 @@ package com.luluy233.maotaitraceability.vo;
  */
 public enum ErrorCode {
     // 错误码
-    SYSTEM_ERROR(-9999, "系统内部异常"),
-    PARAMS_ERROR(1001, "参数有误"),
+    SYSTEM_ERROR(500, "system internal error!"),
+    PARAMS_ERROR(404, "request params error!"),
     TYPE_ERROR(1002, "类型有误"),
     USR_PWD_NOT_EXIST(1003, "用户名不存在或密码错误"),
     TOKEN_ERROR(1004, "token不合法"),

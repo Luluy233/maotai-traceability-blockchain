@@ -8,7 +8,6 @@ import WineList from "@/components/consume/WineList.vue"
 const showForm = ref(false);
 const formData = ref();
 const showDialog = (val) =>{
-  console.log('ConsumeView',val.wine_info);
   showForm.value = val.show_flag;
   formData.value = val.wine_info;
 }

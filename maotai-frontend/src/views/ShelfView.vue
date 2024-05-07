@@ -7,7 +7,6 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
   const showForm = ref(false);
   const formData = ref();
   const showDialog = (val) =>{
-    console.log('shelfView', val.wine_info);
     showForm.value = val.show_flag;
     formData.value = val.wine_info;
   }

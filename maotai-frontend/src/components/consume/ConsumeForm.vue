@@ -47,7 +47,6 @@ import {buyWine} from "@/utils/api.js";
 
   //重置表单
   const resetForm = () =>{
-    console.log('reset', ConsumerForm);
     formRef.value.resetFields();
   }
 </script>

@@ -18,7 +18,6 @@
       //向后端请求数据：
       traceWine(bottleId.value)
           .then(res => {
-            console.log(res.data);
             let param = {
               wine_info: res.data,
             }

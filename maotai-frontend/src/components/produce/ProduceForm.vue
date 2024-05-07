@@ -23,7 +23,6 @@ import { produceWine } from "@/utils/api.js";
       callback();
     }
     else{
-      console.log("请输入合法手机号")
       callback(new Error('请输入11位合法手机号码'));
     }
   }
@@ -48,7 +47,6 @@ import { produceWine } from "@/utils/api.js";
 
   //提交表单
   const submitForm = () =>{
-    console.log('submit：', ProduceForm);
     formRef.value.validate((valid) => {
       if (valid){ //表单验证成功，可以提交
         // 提交表单
@@ -69,7 +67,6 @@ import { produceWine } from "@/utils/api.js";
 
   //重置表单
   const resetForm = () =>{
-    console.log('reset', ProduceForm);
     formRef.value.resetFields();
   }
 </script>

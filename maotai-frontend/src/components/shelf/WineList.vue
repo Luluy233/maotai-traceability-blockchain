@@ -35,7 +35,6 @@ import {ElMessage} from "element-plus";
       show_flag: true,
       wine_info: items.value[index]
     }
-    console.log(param);
     //传递给父组件
     emit('shelf',param)
 }

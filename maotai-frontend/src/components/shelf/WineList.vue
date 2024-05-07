@@ -39,9 +39,7 @@ import {ElMessage} from "element-plus";
     //传递给父组件
     emit('shelf',param)
 }
-
 </script>
-
 
 
 <template>
@@ -60,19 +58,14 @@ import {ElMessage} from "element-plus";
       </template>
     </el-table-column>
   </el-table>
-
   <!-- 分页 -->
   <el-pagination
       class="pagination"
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
       :total = "wines.length">
-
   </el-pagination>
-
-
 </template>
-
 
 
 <style scoped>

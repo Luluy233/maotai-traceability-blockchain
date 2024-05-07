@@ -1,8 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
-import ProduceForm from "@/components/produce/ProduceForm.vue";
-import ProducerForm from "@/components/shelf/ProducerForm.vue";
+import {shelfWine} from "@/utils/api.js";
 
   //表单数据
   const RetailerForm = reactive({
@@ -14,7 +13,6 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
 
   //表单引用
   const formRef = ref(null);
-
 
   //电话合法性检验
   const checkTel = (rule, value, callback) => {
@@ -51,8 +49,13 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
     formRef.value.validate((valid) => {
       if (valid){ //表单验证成功，可以提交
         // 提交表单
-        ElMessage.success('上架成功！');
-
+        shelfWine(RetailerForm)
+            .then(res => {
+              ElMessage.success('上架成功！');
+            })
+            .catch(err =>{
+              ElMessage.error('上架失败，请重试！')
+            })
       }else {
         // 表单验证不通过，给出错误提示
         ElMessage.error('请检查信息是否符合要求！')
@@ -65,6 +68,7 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
     console.log('reset', RetailerForm);
     formRef.value.resetFields();
   }
+
 </script>
 
 
@@ -101,11 +105,4 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
         </el-row>
       </el-form-item>
     </el-form>
-
 </template>
-
-
-
-<style scoped>
-
-</style>

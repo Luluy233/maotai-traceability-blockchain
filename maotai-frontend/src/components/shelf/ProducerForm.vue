@@ -1,10 +1,10 @@
 <script setup>
 
-const props = defineProps({
-  producerData: {
-    type: Object,
-  }
-})
+  const props = defineProps({
+    producerData: {
+      type: Object,
+    }
+  })
 
 </script>
 
@@ -36,5 +36,4 @@ const props = defineProps({
       <el-input v-model="props.producerData.producer.rawMaterials" disabled/>
     </el-form-item>
   </el-form>
-
 </template>

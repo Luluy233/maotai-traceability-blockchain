@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
+import { produceWine } from "@/utils/api.js";
 
   //表单数据
   const ProduceForm = reactive({
@@ -51,7 +52,13 @@ import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
     formRef.value.validate((valid) => {
       if (valid){ //表单验证成功，可以提交
         // 提交表单
-        ElMessage.success('生产成功！');
+        produceWine(ProduceForm.value)
+            .then(res =>{
+              ElMessage.success('生产成功！茅台编号为：' + res.data.bottleId);
+            })
+            .catch(err =>{
+              ElMessage.error('生产失败，请重试！');
+            })
 
       }else {
         // 表单验证不通过，给出错误提示

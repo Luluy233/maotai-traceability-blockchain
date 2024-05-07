@@ -3,48 +3,53 @@ import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
 import {buyWine} from "@/utils/api.js";
 
-//表单数据
-const ConsumerForm = reactive({
-  bottleId: '',
-  consumerId: '',
-  consumerName: '',
-})
+  const props = defineProps({
+    bottleId: String,
+  })
 
-//表单引用
-const formRef = ref(null);
+  //表单数据
+  const ConsumerForm = reactive({
+    bottleId: '',
+    consumerId: '',
+    consumerName: '',
+  })
 
-//表单规则
-const rules = reactive({
-  consumerId:[
-    { required: true, message: '消费者编号不能为空！', trigger: 'blur' },
-  ],
-  consumerName:[]
-})
+  //表单引用
+  const formRef = ref(null);
 
-//提交表单
-const submitForm = () =>{
-  formRef.value.validate((valid) => {
-    if (valid){ //表单验证成功，可以提交
-      // 提交表单
-      buyWine(ConsumerForm)
-          .then(res => {
-            ElMessage.success('购买成功！');
-          })
-          .catch(err =>{
-            ElMessage.error('购买失败，请重试！');
-          })
-    }else {
-      // 表单验证不通过，给出错误提示
-      ElMessage.error('请检查信息是否符合要求！')
-    }
-  });
-}
+  //表单规则
+  const rules = reactive({
+    consumerId:[
+      { required: true, message: '消费者编号不能为空！', trigger: 'blur' },
+    ],
+    consumerName:[]
+  })
 
-//重置表单
-const resetForm = () =>{
-  console.log('reset', ConsumerForm);
-  formRef.value.resetFields();
-}
+  //提交表单
+  const submitForm = () =>{
+    ConsumerForm.bottleId = props.bottleId;
+    formRef.value.validate((valid) => {
+      if (valid){ //表单验证成功，可以提交
+        // 提交表单
+        buyWine(ConsumerForm)
+            .then(res => {
+              ElMessage.success('购买成功！');
+            })
+            .catch(err =>{
+              ElMessage.error('购买失败，请重试！');
+            })
+      }else {
+        // 表单验证不通过，给出错误提示
+        ElMessage.error('请检查信息是否符合要求！')
+      }
+    });
+  }
+
+  //重置表单
+  const resetForm = () =>{
+    console.log('reset', ConsumerForm);
+    formRef.value.resetFields();
+  }
 </script>
 
 

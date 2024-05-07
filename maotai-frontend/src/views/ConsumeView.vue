@@ -8,7 +8,7 @@ import WineList from "@/components/consume/WineList.vue"
 const showForm = ref(false);
 const formData = ref();
 const showDialog = (val) =>{
-  console.log(val);
+  console.log('ConsumeView',val.wine_info);
   showForm.value = val.show_flag;
   formData.value = val.wine_info;
 }
@@ -36,7 +36,7 @@ const showDialog = (val) =>{
         <RetailerForm :retailer-data="formData"></RetailerForm>
 
         <el-divider>消费者信息</el-divider>
-        <ConsumeForm></ConsumeForm>
+        <ConsumeForm :bottleId="formData.bottleId"></ConsumeForm>
 
       </el-dialog>
 

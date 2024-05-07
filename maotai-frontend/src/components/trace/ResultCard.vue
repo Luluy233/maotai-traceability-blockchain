@@ -1,11 +1,7 @@
 <script setup>
-
   const props = defineProps({
     traceData: Object
   })
-
-
-
 </script>
 
 
@@ -14,28 +10,28 @@
       <el-divider>
         <span class="card-header">生产信息</span>
       </el-divider>
-      <p>生产商编号：{{traceData.producerId}}</p>
-      <p>生产商名称：{{traceData.producerName}}</p>
-      <p>生产商电话：{{traceData.producerTel}}</p>
-      <p>生产地址：{{traceData.producerLocation}}</p>
-      <p>选用原料：{{traceData.rawMaterials}}</p>
-      <p>生产时间：{{traceData.produceTime}}</p>
+      <p>生产商编号：{{traceData.producer.producerId}}</p>
+      <p>生产商名称：{{traceData.producer.producerName}}</p>
+      <p>生产商电话：{{traceData.producer.producerTel}}</p>
+      <p>生产地址：{{traceData.producer.produceLocation}}</p>
+      <p>选用原料：{{traceData.producer.rawMaterials}}</p>
+      <p>生产时间：{{traceData.producer.produceTime}}</p>
 
       <el-divider>
         <span class="card-header">零售信息</span>
       </el-divider>
-      <p>零售商编号：{{traceData.retailerId}}</p>
-      <p>零售商名称：{{traceData.retailerName}}</p>
-      <p>零售商电话：{{traceData.retailerTel}}</p>
-      <p>零售商地址：{{traceData.retailerLocation}}</p>
-      <p>上架时间：{{traceData.retaileTime}}</p>
+      <p>零售商编号：{{traceData.retailer.retailerId}}</p>
+      <p>零售商名称：{{traceData.retailer.retailerName}}</p>
+      <p>零售商电话：{{traceData.retailer.retailerTel}}</p>
+      <p>零售商地址：{{traceData.retailer.retailerLocation}}</p>
+      <p>上架时间：{{traceData.retailer.retailTime}}</p>
 
       <el-divider>
         <span class="card-header">消费信息</span>
       </el-divider>
-      <p>消费者编号：{{traceData.consumerId}}</p>
-      <p>消费者名称：{{traceData.consumerName}}</p>
-      <p>消费时间：{{traceData.consumeTime}}</p>
+      <p>消费者编号：{{traceData.consumer.consumerId}}</p>
+      <p>消费者名称：{{traceData.consumer.consumerName}}</p>
+      <p>消费时间：{{traceData.consumer.consumeTime}}</p>
     </el-card>
 
 </template>

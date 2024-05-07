@@ -1,79 +1,22 @@
 <script setup>
-import {computed, ref} from 'vue'
+import {computed, onMounted, ref} from 'vue'
+import {getWinesByStatus} from "@/utils/api.js";
+import {ElMessage} from "element-plus";
 
   const wines = ref([]);
 
   const emit = defineEmits(['shelf']);
 
-  // 生成20个数组元素
-  for (let i = 0; i < 34; i++) {
-    const bottleId = generateBottleId(); // 生成瓶号
-    const producerId = generateProducerId(); // 生成生产商ID
-    const producerName = generateProducerName(); // 生成生产商名称
-    const produceLocation = generateProduceLocation(); // 生成生产地点
-    const produceTime = generateProduceTime(); // 生成生产时间
-    const rawMaterials = generateRawMaterials(); // 生成原材料
-    wines.value.push({
-      bottleId,
-      producerId,
-      producerName,
-      produceLocation,
-      produceTime,
-      rawMaterials,
-    });
-  }
-
-  // 随机生成瓶号
-  function generateBottleId() {
-    return 'MT-' + Math.floor(Math.random() * 10000000000);
-  }
-
-  // 随机生成生产商ID
-  function generateProducerId() {
-    return 'PRD-' + Math.floor(Math.random() * 10000000000);
-  }
-
-  // 随机生成生产商名称
-  function generateProducerName() {
-    const producerNames = ['茅台集团', '贵州茅台', '国窖1573', '茅台镇酒厂'];
-    return producerNames[Math.floor(Math.random() * producerNames.length)];
-  }
-
-  // 随机生成生产地点
-  function generateProduceLocation() {
-    const locations = ['茅台镇', '贵州省遵义市', '中国贵州茅台酒厂'];
-    return locations[Math.floor(Math.random() * locations.length)];
-  }
-
-  // 随机生成生产时间
-  function generateProduceTime() {
-    const startYear = 2024;
-    const endYear = 2024;
-    const year = Math.floor(Math.random() * (endYear - startYear + 1) + startYear);
-
-    const month = (Math.floor(Math.random() * 1) + 5).toString().padStart(2, '0');
-    const day = (Math.floor(Math.random() * 9) + 1).toString().padStart(2, '0');
-
-    const hours = (Math.floor(Math.random() * 24)).toString().padStart(2, '0');
-    const minutes = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');
-    const seconds = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');
-
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
-
-  // 随机生成原材料
-  function generateRawMaterials() {
-    const rawMaterials = ['高粱', '小麦', '大米', '水'];
-    const materialsCount = Math.floor(Math.random() * 3) + 1;
-    const selectedMaterials = [];
-    for (let i = 0; i < materialsCount; i++) {
-      const material = rawMaterials[Math.floor(Math.random() * rawMaterials.length)];
-      if (!selectedMaterials.includes(material)) {
-        selectedMaterials.push(material);
-      }
-    }
-    return selectedMaterials.join(', ');
-  }
+  onMounted(()=>{
+    getWinesByStatus('PRODUCED')
+        .then(res =>{
+          wines.value = res.data;
+          ElMessage.success('获取已生产茅台列表成功！');
+        })
+        .catch(err =>{
+          ElMessage.error('获取已生产茅台列表失败！');
+        })
+  })
 
   const currentPage = ref(1)  //当前页数，默认为第1页
   const pageSize = 10 //每页的图片数量，设置为8
@@ -105,12 +48,12 @@ import {computed, ref} from 'vue'
   <el-table :data="items" border stripe
             :default-sort="{ prop: 'produceTime', order: 'descending' }"
             >
-    <el-table-column prop="produceTime" label="生产时间" sortable></el-table-column>
+    <el-table-column prop="producer.produceTime" label="生产时间" sortable></el-table-column>
     <el-table-column prop="bottleId" label="茅台编号"></el-table-column>
-    <el-table-column prop="producerId" label="生产商编号"></el-table-column>
-    <el-table-column prop="producerName" label="生产商"></el-table-column>
-    <el-table-column prop="produceLocation" label="生产地"></el-table-column>
-    <el-table-column prop="rawMaterials" label="原材料"></el-table-column>
+    <el-table-column prop="producer.producerId" label="生产商编号"></el-table-column>
+    <el-table-column prop="producer.producerName" label="生产商"></el-table-column>
+    <el-table-column prop="producer.produceLocation" label="生产地"></el-table-column>
+    <el-table-column prop="producer.rawMaterials" label="原材料"></el-table-column>
     <el-table-column prop="shelf" label="上架">
       <template v-slot="scope">
         <el-button type="primary" @click="showDialog(scope.$index)" round>上架</el-button>

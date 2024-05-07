@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
+import { produceWine } from "@/utils/api.js";
 
   //表单数据
   const ProduceForm = reactive({
@@ -22,7 +23,6 @@ import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
       callback();
     }
     else{
-      console.log("请输入合法手机号")
       callback(new Error('请输入11位合法手机号码'));
     }
   }
@@ -47,11 +47,16 @@ import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
 
   //提交表单
   const submitForm = () =>{
-    console.log('submit：', ProduceForm);
     formRef.value.validate((valid) => {
       if (valid){ //表单验证成功，可以提交
         // 提交表单
-        ElMessage.success('生产成功！');
+        produceWine(ProduceForm.value)
+            .then(res =>{
+              ElMessage.success('生产成功！茅台编号为：' + res.data.bottleId);
+            })
+            .catch(err =>{
+              ElMessage.error('生产失败，请重试！');
+            })
 
       }else {
         // 表单验证不通过，给出错误提示
@@ -62,7 +67,6 @@ import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
 
   //重置表单
   const resetForm = () =>{
-    console.log('reset', ProduceForm);
     formRef.value.resetFields();
   }
 </script>

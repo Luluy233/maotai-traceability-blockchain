@@ -2,7 +2,6 @@
       <el-menu
           default-active="/"
           @select="handleSelect"
-          :collapse="isCollapse"
           background-color="#6564c8"
       >
         <el-row>
@@ -25,7 +24,7 @@
           <span>购买茅台</span>
         </el-menu-item>
         <el-menu-item index="/trace">
-          <span>溯源</span>
+          <span>茅台溯源</span>
         </el-menu-item>
       </el-menu>
 </template>
@@ -45,26 +44,14 @@
   // const route = useRoute();
   // const currentRoute = computed(() => {
   //   console.log(route.path)
-  //   if(route.path === '/' || route.path === '')
-  //     return 'home';
+  //   router.push(key);
+  //   if(route.path === '')
+  //     return '/';
   //   else
-  //     return currentRoute.replace(/^\//, '');
+  //     return currentRoute;
   // });
 
 
-  // const isCollapse = ref(false);
-
-  // const handleResize = () => {
-  //   isCollapse.value = window.innerWidth < 768; // 根据需要调整断点值
-  // }
-
-  // onMounted(() => {
-  //   window.addEventListener('resize', handleResize);
-  // });
-
-  // onBeforeUnmount(() => {
-  //   window.removeEventListener('resize', handleResize);
-  // });
 </script>
 
 <style scoped>

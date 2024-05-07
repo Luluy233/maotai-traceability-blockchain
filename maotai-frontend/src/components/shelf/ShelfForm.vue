@@ -1,11 +1,15 @@
 <script setup>
 import { reactive, ref } from 'vue';
 import { ElForm, ElFormItem, ElMessage, ElInput } from 'element-plus'
-import ProduceForm from "@/components/produce/ProduceForm.vue";
-import ProducerForm from "@/components/shelf/ProducerForm.vue";
+import {shelfWine} from "@/utils/api.js";
+
+  const props = defineProps({
+    bottleId: String,
+  })
 
   //表单数据
   const RetailerForm = reactive({
+    bottleId: '',
     retailerId: '',
     retailerName: '',
     retailerTel: '',
@@ -15,7 +19,6 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
   //表单引用
   const formRef = ref(null);
 
-
   //电话合法性检验
   const checkTel = (rule, value, callback) => {
     const reg = /^1[3-9]\d{9}$/;
@@ -23,7 +26,6 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
       callback();
     }
     else{
-      console.log("请输入合法手机号")
       callback(new Error('请输入11位合法手机号码'));
     }
   }
@@ -47,12 +49,17 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
 
   //提交表单
   const submitForm = () =>{
-    console.log('submit：', RetailerForm);
+    RetailerForm.bottleId = props.bottleId;
     formRef.value.validate((valid) => {
       if (valid){ //表单验证成功，可以提交
         // 提交表单
-        ElMessage.success('上架成功！');
-
+        shelfWine(RetailerForm)
+            .then(res => {
+              ElMessage.success('上架成功！');
+            })
+            .catch(err =>{
+              ElMessage.error('上架失败，请重试！')
+            })
       }else {
         // 表单验证不通过，给出错误提示
         ElMessage.error('请检查信息是否符合要求！')
@@ -62,9 +69,9 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
 
   //重置表单
   const resetForm = () =>{
-    console.log('reset', RetailerForm);
     formRef.value.resetFields();
   }
+
 </script>
 
 
@@ -101,11 +108,4 @@ import ProducerForm from "@/components/shelf/ProducerForm.vue";
         </el-row>
       </el-form-item>
     </el-form>
-
 </template>
-
-
-
-<style scoped>
-
-</style>

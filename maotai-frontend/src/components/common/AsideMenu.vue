@@ -1,6 +1,6 @@
 <template>
       <el-menu
-          default-active="home"
+          default-active="/"
           @select="handleSelect"
           :collapse="isCollapse"
           background-color="#6564c8"
@@ -11,35 +11,48 @@
           </el-col>
         </el-row>
 
-        <el-menu-item index="home">
+        <el-menu-item index="/">
           <span>首页</span>
         </el-menu-item>
 
-        <el-menu-item index="2">
+        <el-menu-item index="/produce">
+          <span>生产茅台</span>
+        </el-menu-item>
+        <el-menu-item index="/shelf">
+          <span>上架茅台</span>
+        </el-menu-item>
+        <el-menu-item index="/consume">
+          <span>购买茅台</span>
+        </el-menu-item>
+        <el-menu-item index="/trace">
           <span>溯源</span>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <span>Navigator Four</span>
         </el-menu-item>
       </el-menu>
 </template>
 
 <script setup>
   import { ElMenu, ElMenuItem, ElCol, ElRow } from 'element-plus'
-  import { ref, onMounted, onBeforeUnmount } from 'vue'
+  import {computed, onUpdated} from 'vue'
+  import { useRoute } from 'vue-router'
   import router from '@/router'
+
 
   const handleSelect = (key, keyPath) => {
     keyPath; // 用不到但是要写
-    if (key === 'home') {
-      router.push('/');
-    } 
+    router.push(key);
   }
 
-  const isCollapse = ref(false);
+  // const route = useRoute();
+  // const currentRoute = computed(() => {
+  //   console.log(route.path)
+  //   if(route.path === '/' || route.path === '')
+  //     return 'home';
+  //   else
+  //     return currentRoute.replace(/^\//, '');
+  // });
+
+
+  // const isCollapse = ref(false);
 
   // const handleResize = () => {
   //   isCollapse.value = window.innerWidth < 768; // 根据需要调整断点值

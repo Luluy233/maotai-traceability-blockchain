@@ -1,10 +1,10 @@
 <script setup>
 
-  const props = defineProps({
-    retailerData: {
-      type: Object,
-    }
-  })
+const props = defineProps({
+  retailerData: {
+    type: Object,
+  }
+})
 
 </script>
 
@@ -27,7 +27,7 @@
       <el-input v-model="props.retailerData.retailerTel" disabled/>
     </el-form-item>
     <el-form-item label="零售商地址">
-      <el-input v-model="props.retailerData.retailerLocation" disabled/>
+      <el-input v-model="props.retailerData.retailLocation" disabled/>
     </el-form-item>
     <el-form-item label="上架时间">
       <el-input v-model="props.retailerData.retailTime" disabled/>

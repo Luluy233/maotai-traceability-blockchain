@@ -25,12 +25,12 @@ import {computed, ref} from 'vue'
 
   // 随机生成瓶号
   function generateBottleId() {
-    return 'MT' + Math.floor(Math.random() * 1000000);
+    return 'MT' + Math.floor(Math.random() * 10000000000);
   }
 
   // 随机生成生产商ID
   function generateProducerId() {
-    return 'PID' + Math.floor(Math.random() * 1000);
+    return 'PID' + Math.floor(Math.random() * 10000000000);
   }
 
   // 随机生成生产商名称
@@ -54,7 +54,11 @@ import {computed, ref} from 'vue'
     const month = (Math.floor(Math.random() * 12) + 1).toString().padStart(2, '0');
     const day = (Math.floor(Math.random() * 28) + 1).toString().padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
+    const hours = (Math.floor(Math.random() * 24)).toString().padStart(2, '0');
+    const minutes = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');
+    const seconds = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
 
   // 随机生成原材料
@@ -98,8 +102,10 @@ import {computed, ref} from 'vue'
 
 
 <template>
-  <el-table :data="items" border stripe>
-    <el-table-column prop="produceTime" label="生产时间"></el-table-column>
+  <el-table :data="items" border stripe
+            :default-sort="{ prop: 'produceTime', order: 'descending' }"
+            >
+    <el-table-column prop="produceTime" label="生产时间" sortable></el-table-column>
     <el-table-column prop="bottleId" label="茅台编号"></el-table-column>
     <el-table-column prop="producerId" label="生产商编号"></el-table-column>
     <el-table-column prop="producerName" label="生产商"></el-table-column>

@@ -18,16 +18,16 @@ const props = defineProps({
       <el-input v-model="props.retailerData.bottleId" disabled/>
     </el-form-item>
     <el-form-item label="零售商编号">
-      <el-input v-model="props.retailerData.retailerId" disabled/>
+      <el-input v-model="props.retailerData.retailer.retailerId" disabled/>
     </el-form-item>
     <el-form-item label="零售商名称">
-      <el-input v-model="props.retailerData.retailerName" disabled/>
+      <el-input v-model="props.retailerData.retailer.retailerName" disabled/>
     </el-form-item>
     <el-form-item label="零售商地址">
-      <el-input v-model="props.retailerData.retailerLocation" disabled/>
+      <el-input v-model="props.retailerData.retailer.retailerLocation" disabled/>
     </el-form-item>
     <el-form-item label="上架时间">
-      <el-input v-model="props.retailerData.retailTime" disabled/>
+      <el-input v-model="props.retailerData.retailer.retailTime" disabled/>
     </el-form-item>
   </el-form>
 

@@ -6,7 +6,7 @@ const wines = ref([]);
 const emit = defineEmits(['buy']);
 
 // 生成20个数组元素
-for (let i = 0; i < 56; i++) {
+for (let i = 0; i < 21; i++) {
   const bottleId = generateBottleId(); // 生成瓶号
   const retailerId = generateRetailerId(); // 生成生产商ID
   const retailerName = generateRetailerName(); // 生成生产商名称
@@ -23,34 +23,34 @@ for (let i = 0; i < 56; i++) {
 
 // 随机生成瓶号
 function generateBottleId() {
-  return 'MT' + Math.floor(Math.random() * 10000000000);
+  return 'MT-' + Math.floor(Math.random() * 10000000000);
 }
 
 // 随机生成生产商ID
 function generateRetailerId() {
-  return 'PID' + Math.floor(Math.random() * 10000000000);
+  return 'RTL-' + Math.floor(Math.random() * 10000000000);
 }
 
 // 随机生成生产商名称
 function generateRetailerName() {
-  const retailerNames = ['茅台集团', '贵州茅台', '国窖1573', '茅台镇酒厂'];
+  const retailerNames = ['遵南大道贵州茅台专卖店', '人民路贵州茅台专卖店', '上海路贵州茅台专卖店', '东欣大道贵州茅台专卖店'];
   return retailerNames[Math.floor(Math.random() * retailerNames.length)];
 }
 
 // 随机生成生产地点
 function generateRetailerLocation() {
-  const locations = ['茅台镇', '贵州省遵义市', '中国贵州茅台酒厂'];
+  const locations = ['人民路中海九樾1栋19号商铺', '上海路壹品城1单元2层', '龙坑街道爱特购智慧新城A区一层','保利未来城市四街区B'];
   return locations[Math.floor(Math.random() * locations.length)];
 }
 
 // 随机生成生产时间
 function generateRetailTime() {
-  const startYear = 1950;
-  const endYear = 2022;
+  const startYear = 2024;
+  const endYear = 2024;
   const year = Math.floor(Math.random() * (endYear - startYear + 1) + startYear);
 
-  const month = (Math.floor(Math.random() * 12) + 1).toString().padStart(2, '0');
-  const day = (Math.floor(Math.random() * 28) + 1).toString().padStart(2, '0');
+  const month = (Math.floor(Math.random() * 1) + 5).toString().padStart(2, '0');
+  const day = (Math.floor(Math.random() * 8) + 1).toString().padStart(2, '0');
 
   const hours = (Math.floor(Math.random() * 24)).toString().padStart(2, '0');
   const minutes = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');

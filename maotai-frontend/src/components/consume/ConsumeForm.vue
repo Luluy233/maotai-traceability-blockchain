@@ -26,7 +26,7 @@ const submitForm = () =>{
   formRef.value.validate((valid) => {
     if (valid){ //表单验证成功，可以提交
       // 提交表单
-      ElMessage.success('上架成功！');
+      ElMessage.success('购买成功！');
 
     }else {
       // 表单验证不通过，给出错误提示

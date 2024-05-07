@@ -24,7 +24,7 @@
           <span>购买茅台</span>
         </el-menu-item>
         <el-menu-item index="/trace">
-          <span>溯源</span>
+          <span>茅台溯源</span>
         </el-menu-item>
       </el-menu>
 </template>

@@ -6,7 +6,7 @@ import {computed, ref} from 'vue'
   const emit = defineEmits(['shelf']);
 
   // 生成20个数组元素
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 34; i++) {
     const bottleId = generateBottleId(); // 生成瓶号
     const producerId = generateProducerId(); // 生成生产商ID
     const producerName = generateProducerName(); // 生成生产商名称
@@ -25,12 +25,12 @@ import {computed, ref} from 'vue'
 
   // 随机生成瓶号
   function generateBottleId() {
-    return 'MT' + Math.floor(Math.random() * 10000000000);
+    return 'MT-' + Math.floor(Math.random() * 10000000000);
   }
 
   // 随机生成生产商ID
   function generateProducerId() {
-    return 'PID' + Math.floor(Math.random() * 10000000000);
+    return 'PRD-' + Math.floor(Math.random() * 10000000000);
   }
 
   // 随机生成生产商名称
@@ -47,12 +47,12 @@ import {computed, ref} from 'vue'
 
   // 随机生成生产时间
   function generateProduceTime() {
-    const startYear = 1950;
-    const endYear = 2022;
+    const startYear = 2024;
+    const endYear = 2024;
     const year = Math.floor(Math.random() * (endYear - startYear + 1) + startYear);
 
-    const month = (Math.floor(Math.random() * 12) + 1).toString().padStart(2, '0');
-    const day = (Math.floor(Math.random() * 28) + 1).toString().padStart(2, '0');
+    const month = (Math.floor(Math.random() * 1) + 5).toString().padStart(2, '0');
+    const day = (Math.floor(Math.random() * 9) + 1).toString().padStart(2, '0');
 
     const hours = (Math.floor(Math.random() * 24)).toString().padStart(2, '0');
     const minutes = (Math.floor(Math.random() * 60)).toString().padStart(2, '0');

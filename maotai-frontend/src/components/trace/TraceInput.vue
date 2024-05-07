@@ -16,9 +16,28 @@
     }
     else{
       //向后端请求数据：
+      const traceData = ref({
+        producerId: 'PRD-8432991243',
+        producerName: '国窑197茅台厂',
+        producerTel: '020-12345678',
+        producerLocation: '贵州省遵义市茅台县',
+        rawMaterials: '优质红高粱，软质白小麦，水',
+        produceTime: '2023-05-01 10:00:49',
+
+        retailerId: 'RTL-9484520346',
+        retailerName: '人民路贵州茅台专卖区',
+        retailerTel: '021-87654321',
+        retailerLocation: '上海路壹品城1单元2层',
+        retaileTime: '2023-05-04 11:23:49',
+
+        consumerId: 'CUS-5493852385',
+        consumerName: '张三',
+        consumeTime: '2023-05-7 18:45:20',
+      })
+      console.log('TraceInput',traceData.value);
 
       let param = {
-        wine_info: Object,
+        wine_info: traceData.value,
       }
       emit('trace',param);
 

@@ -1,7 +1,3 @@
----
-typora-root-url: docs\img
----
-
 # MaotaiTraceability说明文档
 
 ## 1. 设计思路
@@ -10,15 +6,15 @@ typora-root-url: docs\img
 
 使用状态转移来表示茅台酒的生命周期，如下图所示：
 
-![img](/image3-1.png)
+![img](docs/img/image3-1.png)
 
 MaotaiTraceability应用程序调用茅台智能合约来提交茅台交易及溯源请求。
 
-![img](/image3-2.png)
+![img](docs/img/image3-2.png)
 
 ### 1.2. 项目架构设计
 
-![img](/image3-3.png)
+![img](docs/img/image3-3.png)
 
 1. 前端：Vue+ElementPlus+Axios（`maotai-traceability-blockchain/maotai-frontend`）
 2. 智能合约：使用Springboot+maven+hyperledger fabric（`maotai-traceability-blockchaiin/maotai-contract`），智能合约fabric使用虚拟机VMware16PRO+Ubuntu20.04+fabric v2.5.7进行部署（部署文档见文件夹`maotai-traceability-blockchain/docs/fabric_deployment_v1.md`）。
@@ -63,17 +59,18 @@ Fabric系统主要由两个应用构成：Orderer和Peer，其中Orderer负责�
 
 由于只是个简单的demo系统，因此并没有实现角色管理系统、不同角色通过测试时手动输入ID来区分。
 
-### 2.1. 首页![img](/image4-1.png)
+### 2.1. 首页
+![img](docs/img/image4-1.png)
 
 ### 2.2. 生产茅台
 
 生产商用户选择“生产茅台”菜单，可以进入对应界面输入生产信息表单，包括生产商编号（以PRD-开头的字符串）、生产商名称、生产商电话、生产商地址、原材料描述等基本信息，提交表单后会自动生成对应的生产时间以及本瓶茅台酒编号，并将该茅台酒生产信息提交到区块链中。
 
-![img](/image4-2.png)
+![img](docs/img/image4-2.png)
 
 错误提示：
 
-![img](/image4-3.png)
+![img](docs/img/image4-3.png)
 
 ### 2.3. 上架茅台
 
@@ -81,13 +78,13 @@ Fabric系统主要由两个应用构成：Orderer和Peer，其中Orderer负责�
 
 零售商用户选择“上架茅台”菜单，可以进入对应界面分页查看所有已生产的茅台列表，包括生产时间、茅台编号、生产商编号（以PRD-开头的字符串）、生产商名称、生产商地址、原材料描述等基本信息。
 
-![img](/image4-4.png)
+![img](docs/img/image4-4.png)
 
 #### 2.3.2. 选择已生产茅台进行上架
 
 零售商用户可以选择指定茅台的对应的“上架”操作按钮填写上架信息，包括零售商编号（以RTL-开头的字符串）、零售商商名称、零售商电话、零售商地址等基本信息，提交表单后会自动生成对应的上架时间，并将生产信息及上架信息提交到区块链中。
 
-![img](/image4-5.png)
+![img](docs/img/image4-5.png)
 
 ### 2.4. 购买茅台
 
@@ -95,19 +92,19 @@ Fabric系统主要由两个应用构成：Orderer和Peer，其中Orderer负责�
 
 消费者用户选择“购买茅台”菜单，可以进入对应界面分页查看所有已上架的茅台列表，包括上架时间、茅台编号、零售商商编号（以RTL-开头的字符串）、零售商名称、零售商地址等基本信息。
 
-![img](/image4-6.png)
+![img](docs/img/image4-6.png)
 
 #### 2.4.2. 购买茅台
 
 消费者用户可以选择指定茅台的对应的“购买”操作按钮填写消费信息，包括消费者编号（以CUS-开头的字符串）、消费者昵称等基本信息，提交表单后会自动生成对应的消费时间，并将该瓶茅台及相应的生产、上架、消费信息提交到区块链中。
 
-![img](/image4-7.png)
+![img](docs/img/image4-7.png)
 
 ### 2.5. 茅台溯源
 
 用户选择“茅台溯源”菜单，可以进入对应界面输入对应的茅台酒编号，点击搜索按钮会从区块链中追溯该茅台的基本信息并显示在界面中。
 
-![img](/image4-8.png)
+![img](docs/img/image4-8.png)
 
 ## 3. 附录
 

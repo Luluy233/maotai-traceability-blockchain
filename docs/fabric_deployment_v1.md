@@ -1,7 +1,3 @@
----
-typora-root-url: img
----
-
 > @author Luluy233
 
 # fabric环境搭建及合约部署
@@ -80,7 +76,7 @@ curl --version
    ./network.sh down
    ```
 
-   ![](/image1-1.png)
+   ![](/docs/img/image1-1.png)
 
 2. 使用docker产看是否运行
 
@@ -101,7 +97,7 @@ curl --version
 ./network.sh createChannel -c <channel-name>
 ```
 
-![img](/imag2-1.png)
+![img](/docs/img/imag2-1.png)
 
 ```bash
 cd ../../test-network
@@ -145,7 +141,7 @@ export FABRIC_CFG_PATH=$PWD/../config/
 peer lifecycle chaincode package maotai-contract.tar.gz --path ../chaincode/maotai-contract/ --lang java --label maotai-contract_1
 ```
 
-![img](/image2-2.png)
+![img](/docs/img/image2-2.png)
 
 命令解释：此命令将在当前目录中创建一个名为`maotai-contract.tar.gz`的软件包。`–lang`标签用于指定链码语言，`–path`标签提供智能合约代码的位置，该路径必须是标准路径或相对于当前工作目录的路径，`–label`标签用于指定一个链码标签，该标签将在安装链码后对其进行标识。建议标签包含链码名称和版本。
 
@@ -175,7 +171,7 @@ peer lifecycle chaincode package maotai-contract.tar.gz --path ../chaincode/maot
 
    看到如下信息说明链码安装成功:
 
-   ![img](/image2-3.png)
+   ![img](/docs/img/image2-3.png)
 
 #### 6.2 Org2 peer节点安装链码
 
@@ -199,7 +195,7 @@ peer lifecycle chaincode install maotai-contract.tar.gz
 
 **重复执行，可以确定链码是否成功安装：**
 
-![img](/image2-4.png)
+![img](/docs/img/image2-4.png)
 
 
 
@@ -259,7 +255,7 @@ export CORE_PEER_ADDRESS=localhost:7051
 peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name maotai-contract --version 1.0 --package-id $CC_PACKAGE_ID --sequence 1 --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 ```
 
-# ![img](/image2-5.png) 
+![img](/docs/img/image2-5.png) 
 
 ### 8. 将链码定义提交给通道
 
@@ -286,7 +282,7 @@ peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name maota
 peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name maotai-contract --version 1.0 --sequence 1 --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 ```
 
-![img](/image2-6.png)
+![img](/docs/img/image2-6.png)
 
 可以使用peer lifecycle chaincode querycommitted命令来确认链码定义已提交给通道。
 
@@ -296,7 +292,7 @@ peer lifecycle chaincode querycommitted --channelID mychannel --name maotai-cont
 
 如果将链码成功提交给通道，该querycommitted命令将返回链码定义的顺序和版本:
 
-![img](/image2-7.png)
+![img](/docs/img/image2-7.png)
 
 ```plain
 Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]
